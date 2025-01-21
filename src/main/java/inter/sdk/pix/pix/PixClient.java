@@ -41,7 +41,7 @@ public class PixClient {
      * @throws SdkException If there is an error during the request process, such as network issues
      *                      or API response errors.
      */
-    public DetailedDevolution request(Config config, String e2eId, String id, DevolutionRequestBody devolutionRequestBody) throws SdkException {
+    public DetailedDevolution requestDevolution(Config config, String e2eId, String id, DevolutionRequestBody devolutionRequestBody) throws SdkException {
         log.info("RequestDevolution {} e2eId={} id={}", config.getClientId(), e2eId, id);
         String url = UrlUtils.buildUrl(config, URL_PIX_PIX) + "/" + e2eId + "/devolucao/" + id;
         try {
@@ -70,7 +70,7 @@ public class PixClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public DetailedDevolution retrieve(Config config, String e2eId, String id) throws SdkException {
+    public DetailedDevolution retrieveDevolution(Config config, String e2eId, String id) throws SdkException {
         log.info("RetrieveDevolution {} e2eId={} id={}", config.getClientId(), e2eId, id);
         String url = UrlUtils.buildUrl(config, URL_PIX_PIX) + "/" + e2eId + "/devolucao/" + id;
         String json = HttpUtils.callGet(config, url, PIX_READ_SCOPE, "Error retrieving devolution");
@@ -97,7 +97,7 @@ public class PixClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public Pix retrieve(Config config, String e2eId) throws SdkException {
+    public Pix retrievePixTransaction(Config config, String e2eId) throws SdkException {
         log.info("RetrievePix {} e2eId={}", config.getClientId(), e2eId);
         String url = UrlUtils.buildUrl(config, URL_PIX_PIX) + "/" + e2eId;
         String json = HttpUtils.callGet(config, url, PIX_READ_SCOPE, "Error retrieving pix");
@@ -128,7 +128,7 @@ public class PixClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public PixPage retrieve(Config config, String initialDate, String finalDate, int page, Integer pageSize, RetrievedPixFilter filter) throws SdkException {
+    public PixPage retrievePixPage(Config config, String initialDate, String finalDate, int page, Integer pageSize, RetrievedPixFilter filter) throws SdkException {
         log.info("RetrievePixList {} {}-{} page={}", config.getClientId(), initialDate, finalDate, page);
         return getPage(config, initialDate, finalDate, page, pageSize, filter);
     }
@@ -144,7 +144,7 @@ public class PixClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public List<Pix> retrieve(Config config, String initialDate, String finalDate, RetrievedPixFilter filter) throws SdkException {
+    public List<Pix> retrievePixInRange(Config config, String initialDate, String finalDate, RetrievedPixFilter filter) throws SdkException {
         log.info("RetrievePixList {} {}-{}", config.getClientId(), initialDate, finalDate);
         int page = 0;
         PixPage pixPage;

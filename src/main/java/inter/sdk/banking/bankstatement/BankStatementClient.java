@@ -46,7 +46,7 @@ public class BankStatementClient {
      * @throws SdkException If an error occurs during the retrieval of the statement or if an error
      *                      occurs during the JSON parsing.
      */
-    public BankStatement retrieve(Config config, String initialDate, String finalDate) throws SdkException {
+    public BankStatement retrieveStatement(Config config, String initialDate, String finalDate) throws SdkException {
         log.info("RetrieveBankStatement {} {}-{}", config.getClientId(), initialDate, finalDate);
         String url = UrlUtils.buildUrl(config, URL_BANKING_STATEMENT) + "?dataInicio=" + initialDate + "&dataFim=" + finalDate;
         String json = HttpUtils.callGet(config, url, READ_BALANCE_SCOPE, "Error retrieving statement");
@@ -74,7 +74,7 @@ public class BankStatementClient {
      * @throws SdkException If an error occurs during the retrieval of the statement or if an error
      *                      occurs during the PDF decoding or file writing process.
      */
-    public void retrieve(Config config, String initialDate, String finalDate, String file) throws SdkException {
+    public void retrieveStatementInPdf(Config config, String initialDate, String finalDate, String file) throws SdkException {
         log.info("RetrieveBankStatementInPdf {} {}-{}", config.getClientId(), initialDate, finalDate);
         String url = UrlUtils.buildUrl(config, URL_BANKING_STATEMENT_PDF) + "?dataInicio=" + initialDate + "&dataFim=" + finalDate;
         String json = HttpUtils.callGet(config, url, READ_BALANCE_SCOPE, "Error retrieving statement in pdf");
@@ -108,7 +108,7 @@ public class BankStatementClient {
      * @return An {@link EnrichedBankStatementPage} containing the requested page of enriched statements.
      * @throws SdkException If there is an error during the retrieval process.
      */
-    public EnrichedBankStatementPage retrieve(Config config, String initialDate, String finalDate, int page, Integer pageSize, FilterRetrieveEnrichedStatement filter) throws SdkException {
+    public EnrichedBankStatementPage retrieveStatementPage(Config config, String initialDate, String finalDate, int page, Integer pageSize, FilterRetrieveEnrichedStatement filter) throws SdkException {
         log.info("RetrieveEnrichedBankStatement {} {}-{}", config.getClientId(), initialDate, finalDate);
         return getPage(config, initialDate, finalDate, page, pageSize, filter);
     }
@@ -122,7 +122,7 @@ public class BankStatementClient {
      * @return A list of {@link EnrichedTransaction} representing all transactions within the date range.
      * @throws SdkException If there is an error during the retrieval process.
      */
-    public List<EnrichedTransaction> retrieve(Config config, String initialDate, String finalDate, FilterRetrieveEnrichedStatement filter) throws SdkException {
+    public List<EnrichedTransaction> retrieveStatementInRange(Config config, String initialDate, String finalDate, FilterRetrieveEnrichedStatement filter) throws SdkException {
         log.info("RetrieveEnrichedBankStatement {} {}-{}", config.getClientId(), initialDate, finalDate);
         int page = 0;
         EnrichedBankStatementPage transactionPage;

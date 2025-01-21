@@ -40,7 +40,7 @@ public class DueBillingClient {
      * @throws SdkException If there is an error during the inclusion process, such as network issues
      *                      or API response errors.
      */
-    public GeneratedDueBilling include(Config config, String txid, DueBilling billing) throws SdkException {
+    public GeneratedDueBilling includeDueBilling(Config config, String txid, DueBilling billing) throws SdkException {
         log.info("IncludeDueBilling {} {}", config.getClientId(), txid);
         String url = UrlUtils.buildUrl(config, URL_PIX_SCHEDULED_BILLINGS) + "/" + txid;
         try {
@@ -68,7 +68,7 @@ public class DueBillingClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public DetailedDuePixBilling retrieve(Config config, String txid) throws SdkException {
+    public DetailedDuePixBilling retrieveDueBilling(Config config, String txid) throws SdkException {
         log.info("RetrieveDueBilling {} txId={}", config.getClientId(), txid);
         String url = UrlUtils.buildUrl(config, URL_PIX_SCHEDULED_BILLINGS) + "/" + txid;
         String json = HttpUtils.callGet(config, url, PIX_SCHEDULED_BILLING_READ_SCOPE, "Error retrieving due billing");
@@ -99,7 +99,7 @@ public class DueBillingClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public DueBillingPage retrieve(Config config, String initialDate, String finalDate, int page, Integer pageSize, RetrieveDueBillingFilter filter) throws SdkException {
+    public DueBillingPage retrieveDueBillingPage(Config config, String initialDate, String finalDate, int page, Integer pageSize, RetrieveDueBillingFilter filter) throws SdkException {
         log.info("RetrieveDueBillingList {} {}-{} page={}", config.getClientId(), initialDate, finalDate, page);
         return getPage(config, initialDate, finalDate, page, pageSize, filter);
     }
@@ -115,7 +115,7 @@ public class DueBillingClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public List<DetailedDuePixBilling> retrieve(Config config, String initialDate, String finalDate, RetrieveDueBillingFilter filter) throws SdkException {
+    public List<DetailedDuePixBilling> retrieveDuePixBillingInRange(Config config, String initialDate, String finalDate, RetrieveDueBillingFilter filter) throws SdkException {
         log.info("RetrieveDueBillingList {} {}-{}", config.getClientId(), initialDate, finalDate);
         int page = 0;
         DueBillingPage dueBillingPage;
@@ -138,7 +138,7 @@ public class DueBillingClient {
      * @throws SdkException If there is an error during the review process, such as network issues
      *                      or API response errors.
      */
-    public GeneratedDueBilling review(Config config, String txid, DueBilling billing) throws SdkException {
+    public GeneratedDueBilling reviewDueBilling(Config config, String txid, DueBilling billing) throws SdkException {
         log.info("ReviewDueBilling {} {}", config.getClientId(), txid);
         try {
             String url = UrlUtils.buildUrl(config, URL_PIX_SCHEDULED_BILLINGS) + "/" + txid;

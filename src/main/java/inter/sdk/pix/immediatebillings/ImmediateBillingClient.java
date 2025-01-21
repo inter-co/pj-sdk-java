@@ -39,7 +39,7 @@ public class ImmediateBillingClient {
      * @throws SdkException If there is an error during the inclusion process, such as network issues
      *                      or API response errors.
      */
-    public GeneratedImmediateBilling include(Config config, PixBilling billing) throws SdkException {
+    public GeneratedImmediateBilling includeImmediateBilling(Config config, PixBilling billing) throws SdkException {
         log.info("IncludeImmediateBilling {} {}", config.getClientId(), billing.getTxid());
         String url = UrlUtils.buildUrl(config, URL_PIX_IMMEDIATE_BILLINGS);
         try {
@@ -72,7 +72,7 @@ public class ImmediateBillingClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public DetailedImmediatePixBilling retrieve(Config config, String txId) throws SdkException {
+    public DetailedImmediatePixBilling retrieveImmediateBilling(Config config, String txId) throws SdkException {
         log.info("RetrieveImmediateBilling {} txId={}", config.getClientId(), txId);
         String url = UrlUtils.buildUrl(config, URL_PIX_IMMEDIATE_BILLINGS) + "/" + txId;
         String json = HttpUtils.callGet(config, url, PIX_IMMEDIATE_BILLING_READ_SCOPE, "Error retrieving immediate billing");
@@ -103,7 +103,7 @@ public class ImmediateBillingClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public BillingPage retrieve(Config config, String initialDate, String finalDate, int page, Integer pageSize, RetrieveImmediateBillingsFilter filter) throws SdkException {
+    public BillingPage retrieveImmediateBillingPage(Config config, String initialDate, String finalDate, int page, Integer pageSize, RetrieveImmediateBillingsFilter filter) throws SdkException {
         log.info("RetrieveImmediateBillingList {} {}-{} page={}", config.getClientId(), initialDate, finalDate, page);
         return getPage(config, initialDate, finalDate, page, pageSize, filter);
     }
@@ -119,7 +119,7 @@ public class ImmediateBillingClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public List<DetailedImmediatePixBilling> retrieve(Config config, String initialDate, String finalDate, RetrieveImmediateBillingsFilter filter) throws SdkException {
+    public List<DetailedImmediatePixBilling> retrieveImmediateBillingInRange(Config config, String initialDate, String finalDate, RetrieveImmediateBillingsFilter filter) throws SdkException {
         log.info("RetrieveImmediateBillingList {} {}-{}", config.getClientId(), initialDate, finalDate);
         int page = 0;
         BillingPage billingPage;
@@ -141,7 +141,7 @@ public class ImmediateBillingClient {
      * @throws SdkException If there is an error during the review process, such as network issues
      *                      or API response errors.
      */
-    public GeneratedImmediateBilling review(Config config, PixBilling cobranca) throws SdkException {
+    public GeneratedImmediateBilling reviewImmediateBilling(Config config, PixBilling cobranca) throws SdkException {
         log.info("ReviewImmediateBilling {} {}", config.getClientId(), cobranca.getTxid());
         try {
             String url = UrlUtils.buildUrl(config, URL_PIX_IMMEDIATE_BILLINGS) + "/" + cobranca.getTxid();

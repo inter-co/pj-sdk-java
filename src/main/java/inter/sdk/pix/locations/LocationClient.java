@@ -39,7 +39,7 @@ public class LocationClient {
      * @throws SdkException If there is an error during the inclusion process, such as network issues
      *                      or API response errors.
      */
-    public Location include(Config config, ImmediateBillingType immediateBillingType) throws SdkException {
+    public Location includeLocation(Config config, ImmediateBillingType immediateBillingType) throws SdkException {
         log.info("IncludeLocation pix {} {}", config.getClientId(), immediateBillingType);
         String url = UrlUtils.buildUrl(config, URL_PIX_LOCATIONS);
         IncludeLocationRequest request = IncludeLocationRequest.builder().immediateBillingType(immediateBillingType).build();
@@ -68,7 +68,7 @@ public class LocationClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public Location retrieve(Config config, String id) throws SdkException {
+    public Location retrieveLocation(Config config, String id) throws SdkException {
         log.info("RetrieveLocation {} id={}", config.getClientId(), id);
         String url = UrlUtils.buildUrl(config, URL_PIX_LOCATIONS) + "/" + id;
         String json = HttpUtils.callGet(config, url, PIX_LOCATION_READ_SCOPE, "Error retrieving location");
@@ -99,7 +99,7 @@ public class LocationClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public LocationPage retrieve(Config config, String initialDate, String finalDate, int page, Integer pageSize, RetrieveLocationFilter filter) throws SdkException {
+    public LocationPage retrieveLocationPage(Config config, String initialDate, String finalDate, int page, Integer pageSize, RetrieveLocationFilter filter) throws SdkException {
         log.info("RetrieveLocationsList {} {}-{} pagina={}", config.getClientId(), initialDate, finalDate, page);
         return getPage(config, initialDate, finalDate, page, pageSize, filter);
     }
@@ -115,7 +115,7 @@ public class LocationClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public List<Location> retrieve(Config config, String initialDate, String finalDate, RetrieveLocationFilter filter) throws SdkException {
+    public List<Location> retrieveLocationInRange(Config config, String initialDate, String finalDate, RetrieveLocationFilter filter) throws SdkException {
         log.info("RetrieveLocationsList {} {}-{}", config.getClientId(), initialDate, finalDate);
         int page = 0;
         LocationPage locationPage;
@@ -137,7 +137,7 @@ public class LocationClient {
      * @throws SdkException If there is an error during the unlinking process, such as network issues
      *                      or API response errors.
      */
-    public Location unlink(Config config, String id) throws SdkException {
+    public Location unlinkLocation(Config config, String id) throws SdkException {
         log.info("UnlinkLocation {} id={}", config.getClientId(), id);
         String url = UrlUtils.buildUrl(config, URL_PIX_LOCATIONS) + "/" + id + "/txid";
         String json = HttpUtils.callDelete(config, url, PIX_LOCATION_WRITE_SCOPE, "Error unlinking location");

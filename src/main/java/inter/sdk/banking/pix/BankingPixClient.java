@@ -38,7 +38,7 @@ public class BankingPixClient {
      * @throws SdkException If there is an error during the inclusion process, such as
      *                      network issues or API response errors.
      */
-    public IncludePixResponse include(Config config, Pix pix) throws SdkException {
+    public IncludePixResponse includePix(Config config, Pix pix) throws SdkException {
         log.info("IncludePix {} {}", config.getClientId(), pix.getDescription());
         String url = UrlUtils.buildUrl(config, URL_BANKING_PAYMENT_PIX);
         try {
@@ -67,7 +67,7 @@ public class BankingPixClient {
      * @throws SdkException If there is an error during the retrieval process, such as
      *                      network issues or API response errors.
      */
-    public RetrievePixResponse retrieve(Config config, String requestCode) throws SdkException {
+    public RetrievePixResponse retrievePixTransaction(Config config, String requestCode) throws SdkException {
         log.info("RetrievePix {} {}", config.getClientId(), requestCode);
         String url = UrlUtils.buildUrl(config, URL_BANKING_PAYMENT_PIX) + "/" + requestCode;
         String json = HttpUtils.callGet(config, url, PIX_PAYMENT_READ_SCOPE, "Error retrieving pix");

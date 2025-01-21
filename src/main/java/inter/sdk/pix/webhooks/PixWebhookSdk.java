@@ -40,7 +40,7 @@ public class PixWebhookSdk {
      * @throws SdkException If there is an error during the deletion process, such as network issues
      *                      or API response errors.
      */
-    public void delete(Config config, String key) throws SdkException {
+    public void deleteWebhook(Config config, String key) throws SdkException {
         log.info("DeleteWebhook pix {} {}", config.getClientId(), key);
         String url = UrlUtils.buildUrl(config, URL_PIX_WEBHOOK) + "/" + key;
 
@@ -56,7 +56,7 @@ public class PixWebhookSdk {
      * @throws SdkException If there is an error during the inclusion process, such as network issues
      *                      or API response errors.
      */
-    public void include(Config config, String key, String webhookUrl) throws SdkException {
+    public void includeWebhook(Config config, String key, String webhookUrl) throws SdkException {
         log.info("IncludeWebhook pix {} {} {}", config.getClientId(), key, webhookUrl);
         String url = UrlUtils.buildUrl(config, URL_PIX_WEBHOOK) + "/" + key;
         IncludeWebhookRequest request = IncludeWebhookRequest.builder().webhookUrl(webhookUrl).build();
@@ -77,7 +77,7 @@ public class PixWebhookSdk {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public PixCallbackPage retrieve(Config config, String initialDateHour, String finalDateHour, int page, Integer pageSize, CallbackRetrieveFilter filter) throws SdkException {
+    public PixCallbackPage retrieveCallbackPage(Config config, String initialDateHour, String finalDateHour, int page, Integer pageSize, CallbackRetrieveFilter filter) throws SdkException {
         log.info("RetrieveCallbacks pix {} {}-{}", config.getClientId(), initialDateHour, finalDateHour);
         return getPage(config, initialDateHour, finalDateHour, page, pageSize, filter);
     }
@@ -93,7 +93,7 @@ public class PixWebhookSdk {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public List<RetrieveCallbackResponse> retrieve(Config config, String initialDateHour, String finalDateHour, CallbackRetrieveFilter filter) throws SdkException {
+    public List<RetrieveCallbackResponse> retrieveCallbackInRange(Config config, String initialDateHour, String finalDateHour, CallbackRetrieveFilter filter) throws SdkException {
         log.info("RetrieveCallbacks pix {} {}-{}", config.getClientId(), initialDateHour, finalDateHour);
         int page = 0;
         PixCallbackPage callbackPage;
@@ -115,7 +115,7 @@ public class PixWebhookSdk {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public Webhook retrieve(Config config, String key) throws SdkException {
+    public Webhook retrieveWebhook(Config config, String key) throws SdkException {
         log.info("RetrieveWebhook pix {} {}", config.getClientId(), key);
         String url = UrlUtils.buildUrl(config, URL_PIX_WEBHOOK) + "/" + key;
 
