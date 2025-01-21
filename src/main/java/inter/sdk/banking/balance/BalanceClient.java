@@ -35,7 +35,7 @@ public class BalanceClient {
      * @throws SdkException If an error occurs during the retrieval of the balance or if an error
      *                      occurs during the JSON parsing.
      */
-    public Balance retrieve(Config config, String balanceDate) throws SdkException {
+    public Balance retrieve_balance(Config config, String balanceDate) throws SdkException {
         log.info("BalanceRetrieval banking... config.clientId = {}, balanceDate = {}", (config != null ? config.getClientId() : null), balanceDate);
         log.debug("config: {}", config);
 

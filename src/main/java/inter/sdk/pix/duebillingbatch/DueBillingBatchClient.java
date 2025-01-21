@@ -39,7 +39,7 @@ public class DueBillingBatchClient {
      * @throws SdkException If there is an error during the inclusion process, such as network issues
      *                      or API response errors.
      */
-    public void include(Config config, String id, IncludeDueBillingBatchRequest request) throws SdkException {
+    public void includeDueBillingBatch(Config config, String id, IncludeDueBillingBatchRequest request) throws SdkException {
         log.info("IncludeDueBillingBatch {} {}", config.getClientId(), request);
         String url = UrlUtils.buildUrl(config, URL_PIX_SCHEDULED_BILLINGS_BATCH) + "/" + id;
         try {
@@ -66,7 +66,7 @@ public class DueBillingBatchClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public DueBillingBatch retrieve(Config config, String id) throws SdkException {
+    public DueBillingBatch retrieveDueBillingBatch(Config config, String id) throws SdkException {
         log.info("RetrieveDueBillingBatch {} id={}", config.getClientId(), id);
         String url = UrlUtils.buildUrl(config, URL_PIX_SCHEDULED_BILLINGS_BATCH) + "/" + id;
         String json = HttpUtils.callGet(config, url, PIX_SCHEDULED_BILLING_BATCH_READ_SCOPE, "Error retrieving due billing batch");
@@ -96,7 +96,7 @@ public class DueBillingBatchClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public DueBillingBatchPage retrieve(Config config, String initialDate, String finalDate, int page, Integer pageSize) throws SdkException {
+    public DueBillingBatchPage retrieveDueBillingBatchPage(Config config, String initialDate, String finalDate, int page, Integer pageSize) throws SdkException {
         log.info("RetrieveDueBillingBatchList {} {}-{} page={}", config.getClientId(), initialDate, finalDate, page);
         return getPage(config, initialDate, finalDate, page, pageSize);
     }
@@ -111,7 +111,7 @@ public class DueBillingBatchClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public List<DueBillingBatch> retrieve(Config config, String initialDate, String finalDate) throws SdkException {
+    public List<DueBillingBatch> retrieveDueBillingBatchInRange(Config config, String initialDate, String finalDate) throws SdkException {
         log.info("RetrieveDueBillingBatchList {} {}-{}", config.getClientId(), initialDate, finalDate);
         int page = 0;
         DueBillingBatchPage dueBillingPage;
@@ -133,7 +133,7 @@ public class DueBillingBatchClient {
      * @throws SdkException If there is an error during the review process, such as network issues
      *                      or API response errors.
      */
-    public void review(Config config, String id, IncludeDueBillingBatchRequest request) throws SdkException {
+    public void reviewDueBillingBatch(Config config, String id, IncludeDueBillingBatchRequest request) throws SdkException {
         log.info("IncludeDueBillingBatch {} {}", config.getClientId(), request);
         String url = UrlUtils.buildUrl(config, URL_PIX_SCHEDULED_BILLINGS_BATCH) + "/" + id;
         try {
@@ -160,7 +160,7 @@ public class DueBillingBatchClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public DueBillingBatchSummary retrieveSummary(Config config, String id) throws SdkException {
+    public DueBillingBatchSummary retrieveDueBillingBatchSummary(Config config, String id) throws SdkException {
         log.info("RetrieveDueBillingBatch {} id={}", config.getClientId(), id);
         String url = UrlUtils.buildUrl(config, URL_PIX_SCHEDULED_BILLINGS_BATCH) + "/" + id + "/sumario";
         String json = HttpUtils.callGet(config, url, PIX_SCHEDULED_BILLING_BATCH_READ_SCOPE, "Error retrieving due billing batch summary");
@@ -192,7 +192,7 @@ public class DueBillingBatchClient {
      *                      This includes issues related to network access, invalid responses,
      *                      and JSON mapping errors.
      */
-    public DueBillingBatch retrieveBySituation(Config config, String id, String situation) throws SdkException {
+    public DueBillingBatch retrieveDueBillingBatchBySituation(Config config, String id, String situation) throws SdkException {
         log.info("RetrieveDueBillingBatchSituation {} id={}", config.getClientId(), id);
         String url = UrlUtils.buildUrl(config, URL_PIX_SCHEDULED_BILLINGS_BATCH) + "/" + id + "/situacao/" + situation;
         String json = HttpUtils.callGet(config, url, PIX_SCHEDULED_BILLING_BATCH_READ_SCOPE, "Error retrieving due billing batch by situation");

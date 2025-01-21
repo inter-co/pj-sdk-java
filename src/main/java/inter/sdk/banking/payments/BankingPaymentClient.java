@@ -78,7 +78,7 @@ public class BankingPaymentClient {
      * @throws SdkException   If an error occurs during the cancellation process,
      *                        such as issues with the HTTP request or response.
      */
-    public void cancel(Config config, String transactionCode) throws SdkException {
+    public void cancelPayment(Config config, String transactionCode) throws SdkException {
         log.info("CancelPaymentScheduling banking {} {}", config.getClientId(), transactionCode);
         String url = UrlUtils.buildUrl(config, URL_BANKING_PAYMENT) + "/" + transactionCode;
         HttpUtils.callDelete(config, url, BILLET_PAYMENT_WRITE_SCOPE, "Error canceling payment scheduling");
@@ -104,7 +104,7 @@ public class BankingPaymentClient {
      * @throws SdkException   If an error occurs while including the payments, such as
      *                        issues with the HTTP request or response.
      */
-    public IncludeBatchPaymentResponse include(Config config, String myIdentifier, List<BatchItem> payments) throws SdkException {
+    public IncludeBatchPaymentResponse includePaymentInBatch(Config config, String myIdentifier, List<BatchItem> payments) throws SdkException {
         log.info("IncludeBatchPayment banking {} {} {}", config.getClientId(), myIdentifier, payments.size());
         String url = UrlUtils.buildUrl(config, URL_BANKING_PAYMENT_BATCH);
         Batch request = Batch.builder()
@@ -146,7 +146,7 @@ public class BankingPaymentClient {
      * @throws SdkException If an error occurs while including the DARF payment, such as
      *                      issues with the HTTP request or response.
      */
-    public IncludeDarfPaymentResponse include(Config config, DarfPayment pagamento) throws SdkException {
+    public IncludeDarfPaymentResponse includeDarfPayment(Config config, DarfPayment pagamento) throws SdkException {
         log.info("IncludeDarfPayment banking {} {}", config.getClientId(), pagamento.getRevenueCode());
         String url = UrlUtils.buildUrl(config, URL_BANKING_PAYMENT_DARF);
         try {
@@ -184,7 +184,7 @@ public class BankingPaymentClient {
      * @throws SdkException If an error occurs while including the billet payment, such as
      *                      issues with the HTTP request or response.
      */
-    public IncludePaymentResponse include(Config config, BilletPayment payment) throws SdkException {
+    public IncludePaymentResponse includeBilletPayment(Config config, BilletPayment payment) throws SdkException {
         log.info("IncludePayment {} {}", config.getClientId(), payment.getBarcode());
         String url = UrlUtils.buildUrl(config, URL_BANKING_PAYMENT);
         try {
@@ -226,7 +226,7 @@ public class BankingPaymentClient {
      * @throws SdkException If an error occurs while retrieving the DARF payments,
      *                      such as issues with the HTTP request or response.
      */
-    public List<DarfPaymentResponse> retrieve(Config config, String initialDate, String finalDate, DarfPaymentSearchFilter filtro) throws SdkException {
+    public List<DarfPaymentResponse> retrieveDarfPayment(Config config, String initialDate, String finalDate, DarfPaymentSearchFilter filtro) throws SdkException {
         log.info("RetrieveDarfPayments banking {} {}-{}", config.getClientId(), initialDate, finalDate);
         String url = UrlUtils.buildUrl(config, URL_BANKING_PAYMENT_DARF) + "?dataInicio=" + initialDate + "&dataFim=" + finalDate
                 + addfilters(filtro);
@@ -263,7 +263,7 @@ public class BankingPaymentClient {
      * @throws SdkException If an error occurs while retrieving the payment batch, such as
      *                      issues with the HTTP request or response.
      */
-    public BatchProcessing retrieve(Config config, String batchId) throws SdkException {
+    public BatchProcessing retrieveBatch(Config config, String batchId) throws SdkException {
         log.info("RetrievePaymentBatch {} {}", config.getClientId(), batchId);
         String url = UrlUtils.buildUrl(config, URL_BANKING_PAYMENT_BATCH) + "/" + batchId;
         String json = HttpUtils.callGet(config, url, BATCH_PAYMENT_READ_SCOPE, "Error to retrieve batch");
@@ -325,7 +325,7 @@ public class BankingPaymentClient {
      * @throws SdkException If an error occurs while retrieving the payments, such as
      *                      issues with the HTTP request or response.
      */
-    public List<Payment> retrieve(Config config, String initialDate, String finalDate, PaymentSearchFilter filtro) throws SdkException {
+    public List<Payment> retrievePaymentList(Config config, String initialDate, String finalDate, PaymentSearchFilter filtro) throws SdkException {
         log.info("RetrievePayments banking {} {}-{}", config.getClientId(), initialDate, finalDate);
         String url = UrlUtils.buildUrl(config, URL_BANKING_PAYMENT) + "?dataInicio=" + initialDate + "&dataFim=" + finalDate
                 + addfilters(filtro);

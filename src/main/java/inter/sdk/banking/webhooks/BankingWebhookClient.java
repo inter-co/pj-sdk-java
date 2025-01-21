@@ -38,7 +38,7 @@ public class BankingWebhookClient {
      * @throws SdkException If there is an error during the deletion process, such as
      *                      network issues or API response errors.
      */
-    public void delete(Config config, String webhookType) throws SdkException {
+    public void deleteWebhook(Config config, String webhookType) throws SdkException {
         log.info("DeleteWebhook banking {} {}", config.getClientId(), webhookType);
         String url = UrlUtils.buildUrl(config, URL_BANKING_WEBHOOK) + "/" + webhookType;
         HttpUtils.callDelete(config, url, WEBHOOK_BANKING_WRITE_SCOPE, "Error deleting webhook");
@@ -53,7 +53,7 @@ public class BankingWebhookClient {
      * @throws SdkException If there is an error during the inclusion process, such as
      *                      network issues or API response errors.
      */
-    public void include(Config config, String webhookType, String webhookUrl) throws SdkException {
+    public void includeWebhook(Config config, String webhookType, String webhookUrl) throws SdkException {
         log.info("IncludeWebhookBanking {} {} {}", config.getClientId(), webhookType, webhookUrl);
         String url = UrlUtils.buildUrl(config, URL_BANKING_WEBHOOK) + "/" + webhookType;
         IncludeWebhookRequest request = IncludeWebhookRequest.builder().webhookUrl(webhookUrl).build();
@@ -75,7 +75,7 @@ public class BankingWebhookClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public CallbackPage retrieve(Config config, String webhookType, String initialDateHour, String finalDateHour, int page, Integer pageSize, CallbackRetrieveFilter filter) throws SdkException {
+    public CallbackPage retrieveCallbackPage(Config config, String webhookType, String initialDateHour, String finalDateHour, int page, Integer pageSize, CallbackRetrieveFilter filter) throws SdkException {
         log.info("RetrieveCallbacks {} {}-{}", config.getClientId(), initialDateHour, finalDateHour);
         return getPage(config, webhookType, initialDateHour, finalDateHour, page, pageSize, filter);
     }
@@ -92,7 +92,7 @@ public class BankingWebhookClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public List<RetrieveCallbackResponse> retrieve(Config config, String webhookType, String initialDate, String finalDate, CallbackRetrieveFilter filter) throws SdkException {
+    public List<RetrieveCallbackResponse> retrieveCallbacksInRange(Config config, String webhookType, String initialDate, String finalDate, CallbackRetrieveFilter filter) throws SdkException {
         log.info("RetrieveCallbacks {} {}-{}", config.getClientId(), initialDate, finalDate);
         int page = 0;
         CallbackPage callbackPage;
@@ -114,7 +114,7 @@ public class BankingWebhookClient {
      * @throws SdkException If there is an error during the retrieval process, such as
      *                      network issues or API response errors.
      */
-    public Webhook retrieve(Config config, String webhookType) throws SdkException {
+    public Webhook retrieveWebhook(Config config, String webhookType) throws SdkException {
         log.info("RetrieveWebhook banking {} {}", config.getClientId(), webhookType);
         String url = UrlUtils.buildUrl(config, URL_BANKING_WEBHOOK) + "/" + webhookType;
 

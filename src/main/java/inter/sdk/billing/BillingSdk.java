@@ -39,7 +39,7 @@ public class BillingSdk {
             billingClient = new BillingClient();
         }
 
-        billingClient.cancel(config, requestCode, cancellationReason);
+        billingClient.cancelBilling(config, requestCode, cancellationReason);
     }
 
     /**
@@ -54,7 +54,7 @@ public class BillingSdk {
             billingClient = new BillingClient();
         }
 
-        return billingClient.issue(config, billingIssueRequest);
+        return billingClient.issueBilling(config, billingIssueRequest);
     }
 
     /**
@@ -69,7 +69,7 @@ public class BillingSdk {
             billingClient = new BillingClient();
         }
 
-        return billingClient.retrieve(config, requestCode);
+        return billingClient.retrieveBilling(config, requestCode);
     }
 
     /**
@@ -88,7 +88,7 @@ public class BillingSdk {
             billingClient = new BillingClient();
         }
 
-        return billingClient.retrieve(config, initialDate, finalDate, filter, sort);
+        return billingClient.retrieveBillingsInRange(config, initialDate, finalDate, filter, sort);
     }
 
     /**
@@ -109,7 +109,7 @@ public class BillingSdk {
             billingClient = new BillingClient();
         }
 
-        return billingClient.retrieve(config, initialDate, finalDate, page, pageSize, filter, sort);
+        return billingClient.retrieveBillingPage(config, initialDate, finalDate, page, pageSize, filter, sort);
     }
 
     /**
@@ -124,7 +124,7 @@ public class BillingSdk {
             billingClient = new BillingClient();
         }
 
-        billingClient.retrieve(config, requestCode, file);
+        billingClient.retrieveBillingInPDF(config, requestCode, file);
     }
 
     /**
@@ -141,7 +141,7 @@ public class BillingSdk {
             billingClient = new BillingClient();
         }
 
-        return billingClient.retrieve(config, initialDate, finalDate, filter);
+        return billingClient.retrieveBillingSummary(config, initialDate, finalDate, filter);
     }
 
     /**
@@ -159,7 +159,7 @@ public class BillingSdk {
             billingWebhookClient = new BillingWebhookClient();
         }
 
-        return billingWebhookClient.retrieve(config, initialDateHour, finalDateHour, filter);
+        return billingWebhookClient.retrieveCallbacksInRange(config, initialDateHour, finalDateHour, filter);
     }
 
     /**
@@ -179,7 +179,7 @@ public class BillingSdk {
             billingWebhookClient = new BillingWebhookClient();
         }
 
-        return billingWebhookClient.retrieve(config, initialDateHour, finalDateHour, page, pageSize, filter);
+        return billingWebhookClient.retrieveCallbackPage(config, initialDateHour, finalDateHour, page, pageSize, filter);
     }
 
     /**
@@ -193,7 +193,7 @@ public class BillingSdk {
             billingWebhookClient = new BillingWebhookClient();
         }
 
-        billingWebhookClient.include(config, url);
+        billingWebhookClient.includeWebhook(config, url);
     }
 
     /**
@@ -207,7 +207,7 @@ public class BillingSdk {
             billingWebhookClient = new BillingWebhookClient();
         }
 
-        return billingWebhookClient.retrieve(config);
+        return billingWebhookClient.retrieveWebhook(config);
     }
 
     /**
@@ -220,6 +220,6 @@ public class BillingSdk {
             billingWebhookClient = new BillingWebhookClient();
         }
 
-        billingWebhookClient.delete(config);
+        billingWebhookClient.deleteWebhook(config);
     }
 }

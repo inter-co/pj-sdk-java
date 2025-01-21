@@ -58,7 +58,7 @@ public class BankingSdk {
             bankStatementClient = new BankStatementClient();
         }
 
-        return bankStatementClient.retrieve(config, initialDate, finalDate);
+        return bankStatementClient.retrieveStatement(config, initialDate, finalDate);
     }
 
     /**
@@ -74,7 +74,7 @@ public class BankingSdk {
             bankStatementClient = new BankStatementClient();
         }
 
-        bankStatementClient.retrieve(config, initialDate, finalDate, file);
+        bankStatementClient.retrieveStatementInPdf(config, initialDate, finalDate, file);
     }
 
     /**
@@ -91,7 +91,7 @@ public class BankingSdk {
             bankStatementClient = new BankStatementClient();
         }
 
-        return bankStatementClient.retrieve(config, initialDate, finalDate, filter);
+        return bankStatementClient.retrieveStatementInRange(config, initialDate, finalDate, filter);
     }
 
     /**
@@ -109,7 +109,7 @@ public class BankingSdk {
             bankStatementClient = new BankStatementClient();
         }
 
-        return bankStatementClient.retrieve(config, initialDate, finalDate, page, null, filter);
+        return bankStatementClient.retrieveStatementPage(config, initialDate, finalDate, page, null, filter);
     }
 
     /**
@@ -129,7 +129,7 @@ public class BankingSdk {
             bankStatementClient = new BankStatementClient();
         }
 
-        return bankStatementClient.retrieve(config, initialDate, finalDate, page, pageSize, filter);
+        return bankStatementClient.retrieveStatementPage(config, initialDate, finalDate, page, pageSize, filter);
     }
 
     /**
@@ -144,7 +144,7 @@ public class BankingSdk {
             balanceClient = new BalanceClient();
         }
 
-        return balanceClient.retrieve(config, balanceDate);
+        return balanceClient.retrieve_balance(config, balanceDate);
     }
 
     /**
@@ -159,7 +159,7 @@ public class BankingSdk {
             bankingPaymentClient = new BankingPaymentClient();
         }
 
-        return bankingPaymentClient.include(config, payment);
+        return bankingPaymentClient.includeBilletPayment(config, payment);
     }
 
     /**
@@ -176,7 +176,7 @@ public class BankingSdk {
             bankingPaymentClient = new BankingPaymentClient();
         }
 
-        return bankingPaymentClient.retrieve(config, initialDate, finalDate, filter);
+        return bankingPaymentClient.retrievePaymentList(config, initialDate, finalDate, filter);
     }
 
     /**
@@ -191,7 +191,7 @@ public class BankingSdk {
             bankingPaymentClient = new BankingPaymentClient();
         }
 
-        return bankingPaymentClient.include(config, Payment);
+        return bankingPaymentClient.includeDarfPayment(config, Payment);
     }
 
     /**
@@ -208,7 +208,7 @@ public class BankingSdk {
             bankingPaymentClient = new BankingPaymentClient();
         }
 
-        return bankingPaymentClient.retrieve(config, initialDate, finalDate, filter);
+        return bankingPaymentClient.retrieveDarfPayment(config, initialDate, finalDate, filter);
     }
 
     /**
@@ -224,7 +224,7 @@ public class BankingSdk {
             bankingPaymentClient = new BankingPaymentClient();
         }
 
-        return bankingPaymentClient.include(config, myIdentifier, payments);
+        return bankingPaymentClient.includePaymentInBatch(config, myIdentifier, payments);
     }
 
     /**
@@ -239,7 +239,7 @@ public class BankingSdk {
             bankingPaymentClient = new BankingPaymentClient();
         }
 
-        return bankingPaymentClient.retrieve(config, batchId);
+        return bankingPaymentClient.retrieveBatch(config, batchId);
     }
 
     /**
@@ -254,7 +254,7 @@ public class BankingSdk {
             bankingPixClient = new BankingPixClient();
         }
 
-        return bankingPixClient.include(config, pix);
+        return bankingPixClient.includePix(config, pix);
     }
 
     /**
@@ -269,7 +269,7 @@ public class BankingSdk {
             bankingPixClient = new BankingPixClient();
         }
 
-        return bankingPixClient.retrieve(config, requestCode);
+        return bankingPixClient.retrievePixTransaction(config, requestCode);
     }
 
     /**
@@ -283,7 +283,7 @@ public class BankingSdk {
             bankingWebhookClient = new BankingWebhookClient();
         }
 
-        bankingWebhookClient.include(config, webhookType, webhookUrl);
+        bankingWebhookClient.includeWebhook(config, webhookType, webhookUrl);
     }
 
     /**
@@ -297,7 +297,7 @@ public class BankingSdk {
             bankingWebhookClient = new BankingWebhookClient();
         }
 
-        return bankingWebhookClient.retrieve(config, webhookType);
+        return bankingWebhookClient.retrieveWebhook(config, webhookType);
     }
 
     /**
@@ -310,7 +310,7 @@ public class BankingSdk {
             bankingWebhookClient = new BankingWebhookClient();
         }
 
-        bankingWebhookClient.delete(config, webhookType);
+        bankingWebhookClient.deleteWebhook(config, webhookType);
     }
 
     /**
@@ -327,7 +327,7 @@ public class BankingSdk {
             bankingWebhookClient = new BankingWebhookClient();
         }
 
-        return bankingWebhookClient.retrieve(config, webhookType, initialDateHour, finalDateHour, filter);
+        return bankingWebhookClient.retrieveCallbacksInRange(config, webhookType, initialDateHour, finalDateHour, filter);
     }
 
     /**
@@ -344,7 +344,7 @@ public class BankingSdk {
             bankingWebhookClient = new BankingWebhookClient();
         }
 
-        return bankingWebhookClient.retrieve(config, webhookType, initialDateHour, finalDateHour, page, null, filter);
+        return bankingWebhookClient.retrieveCallbackPage(config, webhookType, initialDateHour, finalDateHour, page, null, filter);
     }
 
     /**
@@ -356,7 +356,7 @@ public class BankingSdk {
         if(bankingPaymentClient == null){
             bankingPaymentClient = new BankingPaymentClient();
         }
-        bankingPaymentClient.cancel(config, transactionCode);
+        bankingPaymentClient.cancelPayment(config, transactionCode);
     }
 
 }

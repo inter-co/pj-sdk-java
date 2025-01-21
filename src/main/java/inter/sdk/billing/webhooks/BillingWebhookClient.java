@@ -38,7 +38,7 @@ public class BillingWebhookClient {
      * @throws SdkException If there is an error during the deletion process, such as network issues
      *                      or API response errors.
      */
-    public void delete(Config config) throws SdkException {
+    public void deleteWebhook(Config config) throws SdkException {
         log.info("DeleteWebhook billing {}", config.getClientId());
         String url = UrlUtils.buildUrl(config, URL_BILLING_WEBHOOK);
         HttpUtils.callDelete(config, url, BILLET_BILLING_WRITE_SCOPE, "Error deleting webhook");
@@ -52,7 +52,7 @@ public class BillingWebhookClient {
      * @throws SdkException If there is an error during the inclusion process, such as network issues
      *                      or API response errors.
      */
-    public void include(Config config, String webhookUrl) throws SdkException {
+    public void includeWebhook(Config config, String webhookUrl) throws SdkException {
         log.info("IncludeWebhook billing {} {}", config.getClientId(), webhookUrl);
         String url = UrlUtils.buildUrl(config, URL_BILLING_WEBHOOK);
         IncludeWebhookRequest request = IncludeWebhookRequest.builder().webhookUrl(webhookUrl).build();
@@ -73,7 +73,7 @@ public class BillingWebhookClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public BillingCallbackPage retrieve(Config config, String initialDateHour, String finalDateHour, int page, Integer pageSize, BillingRetrieveCallbacksFilter filter) throws SdkException {
+    public BillingCallbackPage retrieveCallbackPage(Config config, String initialDateHour, String finalDateHour, int page, Integer pageSize, BillingRetrieveCallbacksFilter filter) throws SdkException {
         log.info("RetrieveCallback {} {}-{}", config.getClientId(), initialDateHour, finalDateHour);
         return getPage(config, initialDateHour, finalDateHour, page, pageSize, filter);
     }
@@ -90,7 +90,7 @@ public class BillingWebhookClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public List<BillingRetrieveCallbackResponse> retrieve(Config config, String initialDateHour, String finalDateHour, BillingRetrieveCallbacksFilter filter) throws SdkException {
+    public List<BillingRetrieveCallbackResponse> retrieveCallbacksInRange(Config config, String initialDateHour, String finalDateHour, BillingRetrieveCallbacksFilter filter) throws SdkException {
         log.info("RetrieveCallback {} {}-{}", config.getClientId(), initialDateHour, finalDateHour);
         int page = 0;
         BillingCallbackPage callbackPage;
@@ -111,7 +111,7 @@ public class BillingWebhookClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public Webhook retrieve(Config config) throws SdkException {
+    public Webhook retrieveWebhook(Config config) throws SdkException {
         log.info("RetrieveWebhook billing {}", config.getClientId());
         String url = UrlUtils.buildUrl(config, URL_BILLING_WEBHOOK);
 

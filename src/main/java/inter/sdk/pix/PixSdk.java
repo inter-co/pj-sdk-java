@@ -70,7 +70,7 @@ public class PixSdk {
             dueBillingClient = new DueBillingClient();
         }
 
-        return dueBillingClient.include(config, txid, billing);
+        return dueBillingClient.includeDueBilling(config, txid, billing);
     }
 
     /**
@@ -85,7 +85,7 @@ public class PixSdk {
             dueBillingClient = new DueBillingClient();
         }
 
-        return dueBillingClient.retrieve(config, txid);
+        return dueBillingClient.retrieveDueBilling(config, txid);
     }
 
     /**
@@ -103,7 +103,7 @@ public class PixSdk {
             dueBillingClient = new DueBillingClient();
         }
 
-        return dueBillingClient.retrieve(config, initialDate, finalDate, filter);
+        return dueBillingClient.retrieveDuePixBillingInRange(config, initialDate, finalDate, filter);
     }
 
     /**
@@ -123,7 +123,7 @@ public class PixSdk {
             dueBillingClient = new DueBillingClient();
         }
 
-        return dueBillingClient.retrieve(config, initialDate, finalDate, page, pageSize, filter);
+        return dueBillingClient.retrieveDueBillingPage(config, initialDate, finalDate, page, pageSize, filter);
     }
 
     /**
@@ -139,7 +139,7 @@ public class PixSdk {
             dueBillingClient = new DueBillingClient();
         }
 
-        return dueBillingClient.review(config, txid, billing);
+        return dueBillingClient.reviewDueBilling(config, txid, billing);
     }
 
     /**
@@ -154,7 +154,7 @@ public class PixSdk {
             dueBillingBatchClient = new DueBillingBatchClient();
         }
 
-        dueBillingBatchClient.include(config, txid, batchRequest);
+        dueBillingBatchClient.includeDueBillingBatch(config, txid, batchRequest);
     }
 
     /**
@@ -169,7 +169,7 @@ public class PixSdk {
             dueBillingBatchClient = new DueBillingBatchClient();
         }
 
-        return dueBillingBatchClient.retrieve(config, id);
+        return dueBillingBatchClient.retrieveDueBillingBatch(config, id);
     }
 
     /**
@@ -187,7 +187,7 @@ public class PixSdk {
             dueBillingBatchClient = new DueBillingBatchClient();
         }
 
-        return dueBillingBatchClient.retrieve(config, initialDate, finalDate, page, pageSize);
+        return dueBillingBatchClient.retrieveDueBillingBatchPage(config, initialDate, finalDate, page, pageSize);
     }
 
     /**
@@ -203,7 +203,7 @@ public class PixSdk {
             dueBillingBatchClient = new DueBillingBatchClient();
         }
 
-        return dueBillingBatchClient.retrieve(config, initialDate, finalDate);
+        return dueBillingBatchClient.retrieveDueBillingBatchInRange(config, initialDate, finalDate);
     }
 
     /**
@@ -219,7 +219,7 @@ public class PixSdk {
             dueBillingBatchClient = new DueBillingBatchClient();
         }
 
-        return dueBillingBatchClient.retrieveBySituation(config, id, situation);
+        return dueBillingBatchClient.retrieveDueBillingBatchBySituation(config, id, situation);
     }
 
     /**
@@ -234,7 +234,7 @@ public class PixSdk {
             dueBillingBatchClient = new DueBillingBatchClient();
         }
 
-        return dueBillingBatchClient.retrieveSummary(config, id);
+        return dueBillingBatchClient.retrieveDueBillingBatchSummary(config, id);
     }
 
     /**
@@ -249,7 +249,7 @@ public class PixSdk {
             dueBillingBatchClient = new DueBillingBatchClient();
         }
 
-        dueBillingBatchClient.review(config, id, request);
+        dueBillingBatchClient.reviewDueBillingBatch(config, id, request);
     }
 
     /**
@@ -263,7 +263,7 @@ public class PixSdk {
         if (immediateBillingClient == null) {
             immediateBillingClient = new ImmediateBillingClient();
         }
-        return immediateBillingClient.include(config, billing);
+        return immediateBillingClient.includeImmediateBilling(config, billing);
     }
 
     /**
@@ -277,7 +277,7 @@ public class PixSdk {
         if (immediateBillingClient == null) {
             immediateBillingClient = new ImmediateBillingClient();
         }
-        return immediateBillingClient.retrieve(config, txid);
+        return immediateBillingClient.retrieveImmediateBilling(config, txid);
     }
 
     /**
@@ -294,7 +294,7 @@ public class PixSdk {
         if (immediateBillingClient == null) {
             immediateBillingClient = new ImmediateBillingClient();
         }
-        return immediateBillingClient.retrieve(config, initialDate, finalDate, filter);
+        return immediateBillingClient.retrieveImmediateBillingInRange(config, initialDate, finalDate, filter);
     }
 
     /**
@@ -313,7 +313,7 @@ public class PixSdk {
         if (immediateBillingClient == null) {
             immediateBillingClient = new ImmediateBillingClient();
         }
-        return immediateBillingClient.retrieve(config, initialDate, finalDate, page, pageSize, filter);
+        return immediateBillingClient.retrieveImmediateBillingPage(config, initialDate, finalDate, page, pageSize, filter);
     }
 
     /**
@@ -327,7 +327,7 @@ public class PixSdk {
         if (immediateBillingClient == null) {
             immediateBillingClient = new ImmediateBillingClient();
         }
-        return immediateBillingClient.review(config, billing);
+        return immediateBillingClient.reviewImmediateBilling(config, billing);
     }
 
     /**
@@ -341,7 +341,7 @@ public class PixSdk {
         if (locationClient == null) {
             locationClient = new LocationClient();
         }
-        return locationClient.include(config, immediateBillingType);
+        return locationClient.includeLocation(config, immediateBillingType);
     }
 
     /**
@@ -355,7 +355,7 @@ public class PixSdk {
         if (locationClient == null) {
             locationClient = new LocationClient();
         }
-        return locationClient.retrieve(config, locationId);
+        return locationClient.retrieveLocation(config, locationId);
     }
 
     /**
@@ -372,7 +372,7 @@ public class PixSdk {
         if (locationClient == null) {
             locationClient = new LocationClient();
         }
-        return locationClient.retrieve(config, initialDate, finalDate, filter);
+        return locationClient.retrieveLocationInRange(config, initialDate, finalDate, filter);
     }
 
     /**
@@ -391,7 +391,7 @@ public class PixSdk {
         if (locationClient == null) {
             locationClient = new LocationClient();
         }
-        return locationClient.retrieve(config, initialDate, finalDate, page, pageSize, filter);
+        return locationClient.retrieveLocationPage(config, initialDate, finalDate, page, pageSize, filter);
     }
 
     /**
@@ -405,7 +405,7 @@ public class PixSdk {
         if (locationClient == null) {
             locationClient = new LocationClient();
         }
-        return locationClient.unlink(config, id);
+        return locationClient.unlinkLocation(config, id);
     }
 
     /**
@@ -421,7 +421,7 @@ public class PixSdk {
         if (pixClient == null) {
             pixClient = new PixClient();
         }
-        return pixClient.request(config, e2eId, id, devolutionRequestBody);
+        return pixClient.requestDevolution(config, e2eId, id, devolutionRequestBody);
     }
 
     /**
@@ -436,7 +436,7 @@ public class PixSdk {
         if (pixClient == null) {
             pixClient = new PixClient();
         }
-        return pixClient.retrieve(config, e2eId, id);
+        return pixClient.retrieveDevolution(config, e2eId, id);
     }
 
     /**
@@ -453,7 +453,7 @@ public class PixSdk {
         if (pixClient == null) {
             pixClient = new PixClient();
         }
-        return pixClient.retrieve(config, initialDate, finalDate, filter);
+        return pixClient.retrievePixInRange(config, initialDate, finalDate, filter);
     }
 
     /**
@@ -472,7 +472,7 @@ public class PixSdk {
         if (pixClient == null) {
             pixClient = new PixClient();
         }
-        return pixClient.retrieve(config, initialDate, finalDate, page, pageSize, filter);
+        return pixClient.retrievePixPage(config, initialDate, finalDate, page, pageSize, filter);
     }
 
     /**
@@ -486,7 +486,7 @@ public class PixSdk {
         if (pixClient == null) {
             pixClient = new PixClient();
         }
-        return pixClient.retrieve(config, e2eId);
+        return pixClient.retrievePixTransaction(config, e2eId);
     }
 
     /**
@@ -503,7 +503,7 @@ public class PixSdk {
         if (pixWebhookSdk == null) {
             pixWebhookSdk = new PixWebhookSdk();
         }
-        return pixWebhookSdk.retrieve(config, initialDateHour, finalDateHour, filter);
+        return pixWebhookSdk.retrieveCallbackInRange(config, initialDateHour, finalDateHour, filter);
     }
 
     /**
@@ -522,7 +522,7 @@ public class PixSdk {
         if (pixWebhookSdk == null) {
             pixWebhookSdk = new PixWebhookSdk();
         }
-        return pixWebhookSdk.retrieve(config, initialDateHour, finalDateHour, page, pageSize, filter);
+        return pixWebhookSdk.retrieveCallbackPage(config, initialDateHour, finalDateHour, page, pageSize, filter);
     }
 
     /**
@@ -536,7 +536,7 @@ public class PixSdk {
         if (pixWebhookSdk == null) {
             pixWebhookSdk = new PixWebhookSdk();
         }
-        pixWebhookSdk.include(config, key, webhookUrl);
+        pixWebhookSdk.includeWebhook(config, key, webhookUrl);
     }
 
     /**
@@ -551,7 +551,7 @@ public class PixSdk {
         if (pixWebhookSdk == null) {
             pixWebhookSdk = new PixWebhookSdk();
         }
-        return pixWebhookSdk.retrieve(config, key);
+        return pixWebhookSdk.retrieveWebhook(config, key);
     }
 
     /**
@@ -564,6 +564,6 @@ public class PixSdk {
         if (pixWebhookSdk == null) {
             pixWebhookSdk = new PixWebhookSdk();
         }
-        pixWebhookSdk.delete(config, key);
+        pixWebhookSdk.deleteWebhook(config, key);
     }
 }

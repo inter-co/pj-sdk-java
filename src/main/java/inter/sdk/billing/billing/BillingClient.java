@@ -45,7 +45,7 @@ public class BillingClient {
      * @throws SdkException If there is an error during the cancellation process, such as
      *                      network issues or API response errors.
      */
-    public void cancel(Config config, String requestCode, String cancellationReason) throws SdkException {
+    public void cancelBilling(Config config, String requestCode, String cancellationReason) throws SdkException {
         log.info("CancelBilling {} {} {}", config.getClientId(), requestCode, cancellationReason);
         String url = UrlUtils.buildUrl(config, URL_BILLING) + "/" + requestCode + "/cancelar";
         CancelBillingRequest request = CancelBillingRequest.builder().cancellationReason(cancellationReason).build();
@@ -73,7 +73,7 @@ public class BillingClient {
      * @throws SdkException If there is an error during the billing issuance process, such as network issues
      *                      or API response errors.
      */
-    public BillingIssueResponse issue(Config config, BillingIssueRequest billingIssueRequest) throws SdkException {
+    public BillingIssueResponse issueBilling(Config config, BillingIssueRequest billingIssueRequest) throws SdkException {
         log.info("IssueBilling {} {}", config.getClientId(), billingIssueRequest.getYourNumber());
         String url = UrlUtils.buildUrl(config, URL_BILLING);
         try {
@@ -101,7 +101,7 @@ public class BillingClient {
      * @throws SdkException If there is an error during the retrieval process, such as
      *                      network issues or API response errors.
      */
-    public RetrievedBilling retrieve(Config config, String requestCode) throws SdkException {
+    public RetrievedBilling retrieveBilling(Config config, String requestCode) throws SdkException {
         log.info("RetrieveIssue {} requestCode={}", config.getClientId(), requestCode);
         String url = UrlUtils.buildUrl(config, URL_BILLING) + "/" + requestCode;
         String json = HttpUtils.callGet(config, url, BILLET_BILLING_READ_SCOPE, "Error retrieving billing");
@@ -133,7 +133,7 @@ public class BillingClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public BillingPage retrieve(Config config, String initialDate, String finalDate, int page, Integer pageSize, BillingRetrievalFilter filter, Sorting sort) throws SdkException {
+    public BillingPage retrieveBillingPage(Config config, String initialDate, String finalDate, int page, Integer pageSize, BillingRetrievalFilter filter, Sorting sort) throws SdkException {
         log.info("RetrieveBillingCollection {} {}-{}", config.getClientId(), initialDate, finalDate);
         return getPage(config, initialDate, finalDate, page, pageSize, filter, sort);
     }
@@ -151,7 +151,7 @@ public class BillingClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public List<RetrievedBilling> retrieve(Config config, String initialDate, String finalDate, BillingRetrievalFilter filter, Sorting sort) throws SdkException {
+    public List<RetrievedBilling> retrieveBillingsInRange(Config config, String initialDate, String finalDate, BillingRetrievalFilter filter, Sorting sort) throws SdkException {
         log.info("RetrieveBillingCollection {} {}-{}", config.getClientId(), initialDate, finalDate);
         int page = 0;
         BillingPage billingPage;
@@ -173,7 +173,7 @@ public class BillingClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public void retrieve(Config config, String requestCode, String file) throws SdkException {
+    public void retrieveBillingInPDF(Config config, String requestCode, String file) throws SdkException {
         log.info("RetrieveBillingPdf {} requestCode={}", config.getClientId(), requestCode);
         String url = UrlUtils.buildUrl(config, URL_BILLING) + "/" + requestCode + "/pdf";
         String json = HttpUtils.callGet(config, url, BILLET_BILLING_READ_SCOPE, "Error retrieving billing pdf");
@@ -206,7 +206,7 @@ public class BillingClient {
      * @throws SdkException If there is an error during the retrieval process, such as network issues
      *                      or API response errors.
      */
-    public Summary retrieve(Config config, String initialDate, String finalDate, BillingRetrievalFilter filter) throws SdkException {
+    public Summary retrieveBillingSummary(Config config, String initialDate, String finalDate, BillingRetrievalFilter filter) throws SdkException {
         log.info("RetrieveBillingSummary {} {}-{}", config.getClientId(), initialDate, finalDate);
         String url = UrlUtils.buildUrl(config, URL_BILLING_SUMMARY)
                 + "?dataInicial=" + initialDate
