@@ -8,5 +8,6 @@ public enum BillingSituation {
     CANCELADO,
     EXPIRADO,
     FALHA_EMISSAO,
-    EM_PROCESSAMENTO
+    EM_PROCESSAMENTO,
+    PROTESTO
 }
